@@ -96,18 +96,24 @@ randomSquares();
 
 var score=0;
 var n_questions=0;
-var total_questions=10;
+var total_questions=64;
 function w_button_click(){
     let square_name = document.getElementById("w_button").textContent;
     if(square_colors[square_name]=="white"){
         score += 1;
         n_questions += 1;
+        if(n_questions>=total_questions){
+            final_result();
+        }
         document.getElementById("score").innerHTML=score;
         document.getElementById("n_questions").innerHTML=n_questions;
         randomSquares();
     }
     else{
         n_questions += 1;
+        if(n_questions>=total_questions){
+            final_result();
+        }
         document.getElementById("n_questions").innerHTML=n_questions;
         randomSquares();
     }
@@ -118,7 +124,7 @@ function b_button_click(){
     if(square_colors[square_name]=="black"){
         score += 1;
         n_questions += 1;
-        if(n_questions>total_questions){
+        if(n_questions>=total_questions){
             final_result();
         }
         document.getElementById("score").innerHTML=score;
@@ -127,7 +133,7 @@ function b_button_click(){
     }
     else{
         n_questions += 1;
-        if(n_questions>total_questions){
+        if(n_questions>=total_questions){
             final_result();
         }
         document.getElementById("n_questions").innerHTML=n_questions;
@@ -136,7 +142,11 @@ function b_button_click(){
 }
 
 function final_result(){
-    alert("Test Completed!");
+    var percentage = (score/total_questions)*100;
+    alert("Score : " + score + "/" + total_questions + "\nPercentage : " + percentage.toFixed(2) + "%");
+    score=0;
+    percentage=0;
+    n_questions=0;
 }
 
 
