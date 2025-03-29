@@ -1,0 +1,36 @@
+body{
+    text-align: center;
+}
+
+#heading1{
+    padding: 50px;
+}
+
+#heading2{
+    padding: 25px;
+}
+
+#w_button{
+    color: black;
+    background-color: white;
+    height: 128px;
+    width: 128px;
+    border-radius: 12px;
+    font-size: 50px;
+    margin-right: 10px;
+}
+
+#b_button{
+    color: white;
+    background-color: black;
+    height: 128px;
+    width: 128px;
+    border-radius: 12px;
+    font-size: 50px;
+    margin-left: 10px;
+}
+
+#p_score{
+    font-size: 50px;
+    font-weight:  bold;
+}
