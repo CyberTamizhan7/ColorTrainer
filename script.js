@@ -9,6 +9,9 @@ function start(){
         alert("Enter Number of Questions to Start the Game Srinika!");
     }
     else{
+        if(inputVal == 10){
+            alert("All the best Srinika!");
+        }
         document.getElementsByClassName("content")[0].style.display = "block";
         document.getElementsByClassName("input_tag")[0].style.display = "none";
         startStop();
