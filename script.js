@@ -1,4 +1,5 @@
 
+
 function randomNumber(min, max){
     return Math.floor(Math.random()*(max-min+1))+min;
 }
@@ -94,15 +95,17 @@ function randomSquares(){
 }
 randomSquares();
 
+var clickCounter = 0;
 var score=0;
 var n_questions=0;
-var total_questions=64;
+var total_questions=100;
 function w_button_click(){
+    clickCounter++;
     let square_name = document.getElementById("w_button").textContent;
     if(square_colors[square_name]=="white"){
         score += 1;
         n_questions += 1;
-        if(n_questions>=total_questions){
+        if(n_questions>total_questions){
             final_result();
         }
         document.getElementById("score").innerHTML=score;
@@ -111,20 +114,24 @@ function w_button_click(){
     }
     else{
         n_questions += 1;
-        if(n_questions>=total_questions){
+        if(n_questions>total_questions){
             final_result();
         }
         document.getElementById("n_questions").innerHTML=n_questions;
         randomSquares();
+    }
+    if(clickCounter == 1){
+        startStop();
     }
 }
 
 function b_button_click(){
+    clickCounter++;
     let square_name = document.getElementById("b_button").textContent;
     if(square_colors[square_name]=="black"){
         score += 1;
         n_questions += 1;
-        if(n_questions>=total_questions){
+        if(n_questions>total_questions){
             final_result();
         }
         document.getElementById("score").innerHTML=score;
@@ -133,11 +140,14 @@ function b_button_click(){
     }
     else{
         n_questions += 1;
-        if(n_questions>=total_questions){
+        if(n_questions>total_questions){
             final_result();
         }
         document.getElementById("n_questions").innerHTML=n_questions;
         randomSquares();
+    }
+    if(clickCounter==1){
+        startStop();
     }
 }
 
@@ -147,7 +157,53 @@ function final_result(){
     score=0;
     percentage=0;
     n_questions=0;
+    reset();
 }
+
+
+// Stopwatch
+
+var isRunning = false;
+var startTime;
+var updatedTime;
+var difference;
+var tInterval;
+var running = false;
+
+const timeDisplay = document.getElementById("time");
+
+function startStop() {
+  if (isRunning === false) {
+    startTime = new Date().getTime();
+    tInterval = setInterval(getTime, 1);
+    isRunning = true;
+  } else {
+    clearInterval(tInterval);
+    isRunning = false;
+  }
+}
+
+function reset() {
+  clearInterval(tInterval);
+  isRunning = false;
+  timeDisplay.innerHTML = "00:00:00";
+}
+
+function getTime() {
+  updatedTime = new Date().getTime();
+  difference = updatedTime - startTime;
+
+  let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+  if (hours < 10) hours = "0" + hours;
+  if (minutes < 10) minutes = "0" + minutes;
+  if (seconds < 10) seconds = "0" + seconds;
+
+  timeDisplay.innerHTML = hours + ":" + minutes + ":" + seconds;
+}
+
 
 
 
