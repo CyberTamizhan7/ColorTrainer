@@ -1,4 +1,20 @@
 
+var inputVal;
+var total_questions;
+
+function start(){
+    inputVal = document.getElementById("i_n_questions").value;
+    total_questions = inputVal;
+    if(inputVal==0 || !inputVal){
+        alert("Enter Number of Questions to Start the Game Srinika!");
+    }
+    else{
+        document.getElementsByClassName("content")[0].style.display = "block";
+        document.getElementsByClassName("input_tag")[0].style.display = "none";
+        startStop();
+    }
+}
+
 
 function randomNumber(min, max){
     return Math.floor(Math.random()*(max-min+1))+min;
@@ -98,66 +114,66 @@ randomSquares();
 var clickCounter = 0;
 var score=0;
 var n_questions=0;
-var total_questions=100;
 function w_button_click(){
-    clickCounter++;
+    console.log("Total Questions: ");
+    console.log(total_questions);
+    console.log("Input Val : ");
+    console.log(inputVal);
     let square_name = document.getElementById("w_button").textContent;
     if(square_colors[square_name]=="white"){
         score += 1;
         n_questions += 1;
-        if(n_questions>total_questions){
-            final_result();
-        }
         document.getElementById("score").innerHTML=score;
         document.getElementById("n_questions").innerHTML=n_questions;
+        if(n_questions>=total_questions){
+            final_result();
+        }
         randomSquares();
     }
     else{
         n_questions += 1;
-        if(n_questions>total_questions){
+        document.getElementById("n_questions").innerHTML=n_questions;
+        if(n_questions>=total_questions){
             final_result();
         }
-        document.getElementById("n_questions").innerHTML=n_questions;
         randomSquares();
-    }
-    if(clickCounter == 1){
-        startStop();
     }
 }
 
 function b_button_click(){
-    clickCounter++;
     let square_name = document.getElementById("b_button").textContent;
     if(square_colors[square_name]=="black"){
         score += 1;
         n_questions += 1;
-        if(n_questions>total_questions){
-            final_result();
-        }
         document.getElementById("score").innerHTML=score;
         document.getElementById("n_questions").innerHTML=n_questions;
+        if(n_questions>=total_questions){
+            final_result();
+        }
         randomSquares();
     }
     else{
         n_questions += 1;
-        if(n_questions>total_questions){
+        document.getElementById("n_questions").innerHTML=n_questions;
+        if(n_questions>=total_questions){
             final_result();
         }
-        document.getElementById("n_questions").innerHTML=n_questions;
         randomSquares();
-    }
-    if(clickCounter==1){
-        startStop();
     }
 }
 
 function final_result(){
     var percentage = (score/total_questions)*100;
+    document.getElementById("score").innerHTML = 0;
+    document.getElementById("n_questions").innerHTML = 0;
     alert("Score : " + score + "/" + total_questions + "\nPercentage : " + percentage.toFixed(2) + "%");
     score=0;
     percentage=0;
     n_questions=0;
+    clickCounter = 0;
     reset();
+    document.getElementsByClassName("content")[0].style.display = "none";  
+    document.getElementsByClassName("input_tag")[0].style.display = "block";  
 }
 
 
