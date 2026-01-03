@@ -6,7 +6,7 @@ function start(){
     inputVal = document.getElementById("i_n_questions").value;
     total_questions = inputVal;
     if(inputVal==0 || !inputVal){
-        alert("Enter Number of Questions to Start the Game Srinika!");
+        alert("Enter Number of Questions to Start the Game!");
     }
     else{
         if(inputVal == 10){
@@ -222,6 +222,7 @@ function getTime() {
 
   timeDisplay.innerHTML = hours + ":" + minutes + ":" + seconds;
 }
+
 
 
 
