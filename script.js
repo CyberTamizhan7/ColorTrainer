@@ -10,7 +10,7 @@ function start(){
     }
     else{
         if(inputVal == 10){
-            alert("All the best Srinika!");
+            alert("All the Best!");
         }
         document.getElementsByClassName("content")[0].style.display = "block";
         document.getElementsByClassName("input_tag")[0].style.display = "none";
@@ -222,6 +222,7 @@ function getTime() {
 
   timeDisplay.innerHTML = hours + ":" + minutes + ":" + seconds;
 }
+
 
 
 
